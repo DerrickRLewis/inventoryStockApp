@@ -10,8 +10,8 @@ public class NewItem {
     Scanner scanner = new Scanner(System.in);
 
 
-    public Integer qty;
-    public String name;
+    private Integer qty;
+    private String name;
 
     public Integer getQty() {
         System.out.println("How many would you like to add to inventory?\n");

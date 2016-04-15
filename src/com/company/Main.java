@@ -26,10 +26,9 @@ public class Main {
         supplies.put("Garlic", new Double(-19.08));
 
 
-
         System.out.println("WELCOME TO INVENTORY");
         System.out.println("Please choose one of the following\n");
-        NewItem newItem = new NewItem("name", 7);
+        NewItem newItem = createItem();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -42,9 +41,9 @@ public class Main {
 
             if (option.equals("1")) {
 
-                // Get name of item from user = Item.getItem()
+                // Get name of item from user
                 newItem.getName();
-                newItem.getQty();
+                newItem.getQuantity();
 
                 // String option2 = scanner.nextLine();
 
@@ -53,26 +52,43 @@ public class Main {
                 //Integer.parseInt(scanner.nextLine());
 
 
-            }else if (option.equals("2")){
+            } else if (option.equals("2")) {
 
                 System.out.println("Enter the name of the item you want to remove from the inventory\n");
                 String option3 = scanner.nextLine();
-                System.out.println(option3+" will be removed from the inventory");
+                System.out.println(option3 + " will be removed from the inventory");
 
 
-            }else if (option.equals("3")) {
+            } else if (option.equals("3")) {
                 System.out.println("Enter the name and the qty of the item that you want to update:\n");
                 String option4 = scanner.nextLine();
 
                 System.out.println(option4 + " will be changed");
 
 
-            }else  if (option.equals("4")){
+            } else if (option.equals("4")) {
                 System.out.println(supplies);
-
 
 
             }
         }
     }
+
+
+    /**
+     * Create a static createItem method in your main class which returns an object using the correct category class
+     * (or throws an Exception for an invalid category name).
+     */
+
+
+    public static NewItem createItem() {
+        NewItem newItem = new NewItem();
+        /**Create a static createItem method in your main class which returns an object using the correct category class
+         * (or throws an Exception for an invalid category name).*/
+        newItem.getName();
+        newItem.getQuantity();
+        newItem.getCategory();
+        return newItem;
+    }
+
 }

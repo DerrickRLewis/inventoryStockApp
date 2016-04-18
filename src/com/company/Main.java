@@ -8,31 +8,37 @@ package com.company;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
 
 
-    public static void main(String[] args) {
+    static Scanner scanner = new Scanner(System.in);
+
+    public static ArrayList<String> itemNames = new ArrayList<>();
+    static HashMap<ArrayList , Double> supplies = new HashMap<>();
+
+    public static void main(String[] args) throws Exception {
+        NewItem newItem = new NewItem();
 
 
-        HashMap<String, Double> supplies = new HashMap<String, Double>();
 
-        supplies.put("Sugar", new Double(3.34));
-        supplies.put("Salt", new Double(1.22));
-        supplies.put("Pepper", new Double(1.00));
-        supplies.put("Basil", new Double(9.22));
-        supplies.put("Garlic", new Double(-19.08));
+//        supplies.put("Sugar", new Double(3.34));
+//        supplies.put("Salt", new Double(1.22));
+//        supplies.put("Pepper", new Double(1.00));
+//        supplies.put("Basil", new Double(9.22));
+//        supplies.put("Garlic", new Double(-19.08));
 
 
         System.out.println("WELCOME TO INVENTORY");
         System.out.println("Please choose one of the following\n");
-        NewItem newItem = createItem();
-        Scanner scanner = new Scanner(System.in);
+
+
 
         while (true) {
-            System.out.println("1|| Add new item to inventory\n");
+            System.out.println("\n11|| Add new item to inventory\n");
             System.out.println("2||Remove item from inventory\n");
             System.out.println("3||Change the quantity of an item\n");
             System.out.println("4||Print List");
@@ -41,15 +47,10 @@ public class Main {
 
             if (option.equals("1")) {
 
-                // Get name of item from user
-                newItem.getName();
-                newItem.getQuantity();
 
-                // String option2 = scanner.nextLine();
+                createItem(newItem); listview();
 
 
-                //System.out.println("Now enter How many "+ newItem.name +" do you want to add to inventory?\n");
-                //Integer.parseInt(scanner.nextLine());
 
 
             } else if (option.equals("2")) {
@@ -67,28 +68,49 @@ public class Main {
 
 
             } else if (option.equals("4")) {
-                System.out.println(supplies);
+                System.out.println(supplies + newItem.category);
 
 
             }
         }
     }
 
+    private static void listview() {
+        String name = "User";
+        int items = supplies.size();
+        String.format("Hello, %s! You have %s items in inventory!!.", name, items);
+        System.out.printf("Hello, %s! You have %s items in inventory!!.", name, items);
+    }
 
-    /**
-     * Create a static createItem method in your main class which returns an object using the correct category class
-     * (or throws an Exception for an invalid category name).
-     */
+    private static NewItem createItem(NewItem newItem) throws Exception{
+
+        System.out.println("What is the name of the item that you want to add to the inventory\n");
+        scanner.hasNext();
+            String createScan = scanner.nextLine();
+            itemNames.add(createScan);
+            System.out.println ("How many are adding?");
+            String cataScan = scanner.nextLine();
+            supplies.put(itemNames, Double.valueOf(cataScan));
+            System.out.println("Choose a category for your item :\n");
+            System.out.println ("1)Automotive 2)Food 3)Electronics 4)Clothing");
+            String categScan= scanner.nextLine();
+
+        if (categScan.equalsIgnoreCase("1") ) {
+            newItem.setCategory("Automotive");
+        }else if (categScan.equalsIgnoreCase("2")){
+                newItem.setCategory("Food");
+            } else if (categScan.equalsIgnoreCase("3")){
+        newItem.setCategory("Electronics");
+        }else if(categScan.equalsIgnoreCase("4")){
+        newItem.setCategory("Clothing");
+        } else {
+            throw new Exception("Invalid Option.");
 
 
-    public static NewItem createItem() {
-        NewItem newItem = new NewItem();
-        /**Create a static createItem method in your main class which returns an object using the correct category class
-         * (or throws an Exception for an invalid category name).*/
-        newItem.getName();
-        newItem.getQuantity();
-        newItem.getCategory();
-        return newItem;
+
+        }
+
+        return new NewItem(newItem.category);
     }
 
 }

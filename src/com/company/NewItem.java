@@ -1,63 +1,78 @@
 package com.company;
 
-import java.util.Scanner;
-
-/**
+/**Resubmit
  * Created by admin on 4/4/16.
  */
 public class NewItem {
 
-    Scanner scanner = new Scanner(System.in);
+
+    public Integer quantity;
+    public String name;
+    public String category;
 
 
 
-    private Integer quantity;
-    private String name;
-    private  String category;
-
-
-
-
-
-
-
-    //public Integer quantityPrompt() {
-        //System.out.println("How many would you like to add to inventory?\n");
-       // return Integer.parseInt(scanner.nextLine());
-
-
-
-    public String getName() {
-        System.out.println("What is the name of the item that you want to add to the inventory\n");
-        return scanner.nextLine();
-    }
-
-    public String getCategory(){
-        return category;
-    }
-
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-   //
-
-    public void setCategory(String category) {
+    public NewItem(Integer quantity, String name, String category) {
+        this.quantity = quantity;
+        this.name = name;
         this.category = category;
     }
 
-    public void setQuantity(Integer quantity) {
+    public NewItem(String name, int quantity, String category) {
         this.quantity = quantity;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setQty() {
-
-      }
+        this.category = category;
 
     }
 
+    public NewItem() {
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    // subclasses
+
+    public class Pizza extends NewItem {
+        public Pizza(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+            this.category = "Food";
+        }
+    }
+
+    public class Shirt extends NewItem {
+        public Shirt(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+            this.category = "Shirt";
+        }
+
+
+    }
+
+    public class Tire extends NewItem {
+        public Tire(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+            this.category = "Automotive";
+        }
+    }
+
+    public class Cellphone extends NewItem {
+        public Cellphone(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+            this.category = "Electronics";
+        }
+    }
+    public class Paint extends NewItem {
+        public Paint(String name, int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+            this.category = "Art";
+        }
+    }
+
+}

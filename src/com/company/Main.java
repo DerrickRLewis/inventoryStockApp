@@ -38,21 +38,20 @@ public class Main {
 
 
         while (true) {
-            System.out.println("\n11|| Add new item to inventory\n");
+            System.out.println("\n1|| Add new item to inventory\n");
             System.out.println("2||Remove item from inventory\n");
             System.out.println("3||Change the quantity of an item\n");
             System.out.println("4||Print List");
             String option = scanner.nextLine();
 
-
+/**
+ * createItem() is not working.
+ */
             if (option.equals("1")) {
+              createItem();
 
 
-                createItem(newItem); listview();
-
-
-
-
+                listview();
             } else if (option.equals("2")) {
 
                 System.out.println("Enter the name of the item you want to remove from the inventory\n");
@@ -75,6 +74,9 @@ public class Main {
         }
     }
 
+
+
+
     private static void listview() {
         String name = "User";
         int items = supplies.size();
@@ -82,35 +84,39 @@ public class Main {
         System.out.printf("Hello, %s! You have %s items in inventory!!.", name, items);
     }
 
-    private static NewItem createItem(NewItem newItem) throws Exception{
+    public static NewItem createItem(String name, int quantity, String category) throws Exception {
 
         System.out.println("What is the name of the item that you want to add to the inventory\n");
         scanner.hasNext();
-            String createScan = scanner.nextLine();
-            itemNames.add(createScan);
-            System.out.println ("How many are adding?");
-            String cataScan = scanner.nextLine();
-            supplies.put(itemNames, Double.valueOf(cataScan));
-            System.out.println("Choose a category for your item :\n");
-            System.out.println ("1)Automotive 2)Food 3)Electronics 4)Clothing");
-            String categScan= scanner.nextLine();
+        String createScan = scanner.nextLine();
+        itemNames.add(createScan);
+        name.equalsIgnoreCase(createScan);
 
-        if (categScan.equalsIgnoreCase("1") ) {
-            newItem.setCategory("Automotive");
-        }else if (categScan.equalsIgnoreCase("2")){
-                newItem.setCategory("Food");
-            } else if (categScan.equalsIgnoreCase("3")){
-        newItem.setCategory("Electronics");
-        }else if(categScan.equalsIgnoreCase("4")){
-        newItem.setCategory("Clothing");
+        System.out.println("How many are adding?");
+        String cataScan = scanner.nextLine();
+
+        supplies.put(itemNames, Double.valueOf(cataScan));
+        cataScan.equals(quantity);
+
+        System.out.println("Choose a category for your item :\n");
+        System.out.println("1)Automotive 2)Food 3)Electronics 4)Clothing");
+        String categScan = scanner.nextLine();
+
+        if (categScan.equalsIgnoreCase("1")) {
+            category.equalsIgnoreCase("Automotive");
+        } else if (categScan.equalsIgnoreCase("2")) {
+            category.equalsIgnoreCase("Food");
+        } else if (categScan.equalsIgnoreCase("3")) {
+            category.equalsIgnoreCase("Electronics");
+        } else if (categScan.equalsIgnoreCase("4")) {
+            category.equalsIgnoreCase("Clothing");
         } else {
             throw new Exception("Invalid Option.");
 
 
-
         }
+        return new NewItem( );
 
-        return new NewItem(newItem.category);
+
     }
-
 }

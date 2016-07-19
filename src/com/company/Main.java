@@ -24,7 +24,6 @@ public class Main {
         NewItem newItem = new NewItem();
 
 
-
 //        supplies.put("Sugar", new Double(3.34));
 //        supplies.put("Salt", new Double(1.22));
 //        supplies.put("Pepper", new Double(1.00));
@@ -44,10 +43,14 @@ public class Main {
             System.out.println("4||Print List");
             String option = scanner.nextLine();
 
+
+
+            if (option.equals("1")) {
+
 /**
  * createItem() is not working.
+ * Method below should return new item
  */
-            if (option.equals("1")) {
               createItem();
 
 

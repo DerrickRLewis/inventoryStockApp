@@ -87,7 +87,10 @@ public class Main {
         System.out.printf("Hello, %s! You have %s items in inventory!!.", name, items);
     }
 
-    public static NewItem createItem(String name, int quantity, String category) throws Exception {
+    public static NewItem createItem(String name, String quantity, String category) throws Exception {
+
+       NewItem returnObject = new NewItem(name,quantity,category);
+
 
         System.out.println("What is the name of the item that you want to add to the inventory\n");
         scanner.hasNext();
@@ -104,6 +107,7 @@ public class Main {
         System.out.println("Choose a category for your item :\n");
         System.out.println("1)Automotive 2)Food 3)Electronics 4)Clothing");
         String categScan = scanner.nextLine();
+        categScan.equalsIgnoreCase(category);
 
         if (categScan.equalsIgnoreCase("1")) {
             category.equalsIgnoreCase("Automotive");
@@ -118,7 +122,7 @@ public class Main {
 
 
         }
-        return new NewItem( );
+        return returnObject;
 
 
     }

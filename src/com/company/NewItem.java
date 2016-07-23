@@ -28,6 +28,10 @@ public class NewItem {
     public NewItem() {
     }
 
+    public NewItem(String createScan, String cataScan, String categScan) {
+
+    }
+
     public String getCategory() {
         return category;
     }
@@ -60,6 +64,10 @@ public class NewItem {
         }
     }
 
+    public void setCategory(String category) {
+        this.category = "Automotive";
+    }
+
     public class Cellphone extends NewItem {
         public Cellphone(String name, int quantity) {
             this.name = name;
@@ -67,6 +75,7 @@ public class NewItem {
             this.category = "Electronics";
         }
     }
+
     public class Paint extends NewItem {
         public Paint(String name, int quantity) {
             this.name = name;

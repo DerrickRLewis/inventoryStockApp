@@ -1,34 +1,20 @@
 package com.company;
-/**
- Print out the inventory items and then list the options.
- If the user enters 1, let them create a new item by entering its name.
- If the user enters 2, let them remove an item by its number.
- If the user enters 3, let them update the quantity of that item.
- */
+
 
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
+
 
 public class Main {
 
 
     static Scanner scanner = new Scanner(System.in);
+    public static ArrayList<String> stockList = new ArrayList<>();
 
-    public static ArrayList<String> itemNames = new ArrayList<>();
-    static HashMap<ArrayList , Double> supplies = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        NewItem newItem = new NewItem();
-
-
-//        supplies.put("Sugar", new Double(3.34));
-//        supplies.put("Salt", new Double(1.22));
-//        supplies.put("Pepper", new Double(1.00));
-//        supplies.put("Basil", new Double(9.22));
-//        supplies.put("Garlic", new Double(-19.08));
 
 
         System.out.println("WELCOME TO INVENTORY");
@@ -46,15 +32,9 @@ public class Main {
 
 
             if (option.equals("1")) {
+                createItem();
+                listView();
 
-/**
- * createItem() is not working.
- * Method below should return new item
- */
-              createItem();
-
-
-                listview();
             } else if (option.equals("2")) {
 
                 System.out.println("Enter the name of the item you want to remove from the inventory\n");
@@ -70,7 +50,7 @@ public class Main {
 
 
             } else if (option.equals("4")) {
-                System.out.println(supplies + newItem.category);
+                System.out.println(stockList);
 
 
             }
@@ -80,48 +60,56 @@ public class Main {
 
 
 
-    private static void listview() {
+    private static void listView() {
         String name = "User";
-        int items = supplies.size();
+        int items = stockList.size();
         String.format("Hello, %s! You have %s items in inventory!!.", name, items);
         System.out.printf("Hello, %s! You have %s items in inventory!!.", name, items);
     }
 
-    public static NewItem createItem(String name, String quantity, String category) throws Exception {
+    public static NewItem createItem() throws Exception {
 
-       NewItem returnObject = new NewItem(name,quantity,category);
+
 
 
         System.out.println("What is the name of the item that you want to add to the inventory\n");
-        scanner.hasNext();
-        String createScan = scanner.nextLine();
-        itemNames.add(createScan);
-        name.equalsIgnoreCase(createScan);
+
+        String nameItem = scanner.nextLine();
+        stockList.add(nameItem);
+
 
         System.out.println("How many are adding?");
-        String cataScan = scanner.nextLine();
+        String itemAmount = scanner.nextLine();
 
-        supplies.put(itemNames, Double.valueOf(cataScan));
-        cataScan.equals(quantity);
+        stockList.add(itemAmount);
+
 
         System.out.println("Choose a category for your item :\n");
         System.out.println("1)Automotive 2)Food 3)Electronics 4)Clothing");
-        String categScan = scanner.nextLine();
-        categScan.equalsIgnoreCase(category);
+        String itemCategory = scanner.nextLine();
 
-        if (categScan.equalsIgnoreCase("1")) {
-            category.equalsIgnoreCase("Automotive");
-        } else if (categScan.equalsIgnoreCase("2")) {
-            category.equalsIgnoreCase("Food");
-        } else if (categScan.equalsIgnoreCase("3")) {
-            category.equalsIgnoreCase("Electronics");
-        } else if (categScan.equalsIgnoreCase("4")) {
-            category.equalsIgnoreCase("Clothing");
+        NewItem returnObject = new NewItem(nameItem,itemAmount,itemCategory);
+
+        if (itemCategory.equalsIgnoreCase("1")) {
+           returnObject.setCategory("Automotive");
+            stockList.add(returnObject.category);
+        } else if (itemCategory.equalsIgnoreCase("2")) {
+            returnObject.setCategory("Food");
+            stockList.add(returnObject.category);
+
+        } else if (itemCategory.equalsIgnoreCase("3")) {
+            returnObject.setCategory("Electronics");
+            stockList.add(returnObject.category);
+
+        } else if (itemCategory.equalsIgnoreCase("4")) {
+            returnObject.setCategory("Clothing");
+            stockList.add(returnObject.category);
+
         } else {
             throw new Exception("Invalid Option.");
 
-
         }
+
         return returnObject;
 
 

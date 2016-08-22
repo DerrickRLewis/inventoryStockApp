@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class Main {
 
-
-
     static Scanner scanner = new Scanner(System.in);
     public static ArrayList<String> stockList = new ArrayList<>();
-public static ArrayList<NewItem> stockListObjects = new ArrayList<>();
+    public static ArrayList<NewItem> stockListObjects = new ArrayList<>();
     public static void main(String[] args) throws Exception {
         NewItem pizza = new NewItem(2,"PizzaHut","Food");
         NewItem shirt = new NewItem(7,"Polo","Clothing");
@@ -36,7 +34,7 @@ public static ArrayList<NewItem> stockListObjects = new ArrayList<>();
             if (option.equals("1")) {
                 createItem();
                 listView();
-                System.out.println(stockListObjects);
+                System.out.println(stockListObjects.toString());
 
 
             } else if (option.equals("2")) {

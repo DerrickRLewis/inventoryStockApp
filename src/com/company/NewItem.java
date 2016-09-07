@@ -36,52 +36,24 @@ public class NewItem {
         return category;
     }
 
-    // subclasses
-
-    public class Pizza extends NewItem {
-        public Pizza(String name, int quantity) {
-            this.name = name;
-            this.quantity = quantity;
-            this.category = "Food";
-        }
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public class Shirt extends NewItem {
-        public Shirt(String name, int quantity) {
-            this.name = name;
-            this.quantity = quantity;
-            this.category = "Shirt";
-        }
-
-
-    }
-
-    public class Tire extends NewItem {
-        public Tire(String name, int quantity) {
-            this.name = name;
-            this.quantity = quantity;
-            this.category = "Automotive";
-        }
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setCategory(String category) {
-        this.category = "Automotive";
+        this.category = category;
     }
 
-    public class Cellphone extends NewItem {
-        public Cellphone(String name, int quantity) {
-            this.name = name;
-            this.quantity = quantity;
-            this.category = "Electronics";
-        }
+    @Override
+    public String toString() {
+        return "NewItem{" +
+                "quantity=" + quantity +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
-
-    public class Paint extends NewItem {
-        public Paint(String name, int quantity) {
-            this.name = name;
-            this.quantity = quantity;
-            this.category = "Art";
-        }
-    }
-
 }

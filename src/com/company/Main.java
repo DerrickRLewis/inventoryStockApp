@@ -5,56 +5,27 @@ import java.util.Scanner;
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<String> stockList = new ArrayList<>();
-    public static ArrayList<NewItem> stockListObjects = new ArrayList<>();
+
+    public static ArrayList<NewItem> stockList = new ArrayList<>();
+
+    //static HashMap<Integer, ArrayList<String>> stockListObjects = new HashMap<>();
+
     public static void main(String[] args) throws Exception {
-        NewItem pizza = new NewItem(2,"PizzaHut","Food");
-        NewItem shirt = new NewItem(7,"Polo","Clothing");
-        NewItem tire = new NewItem(4,"BridgeStone","Automotive");
-        NewItem cellphone = new NewItem(1,"Apple","Electronics");
-        NewItem paint = new NewItem(1,"OilPaint","Art");
+        Food pizza = new Food("PizzaHut",2);
+        Clothing shirt = new Clothing("Polo",10);
+        Transportation tire = new Transportation("Volvo",1);
+        Electronics cellphone = new Electronics( "Iphone",2);
+        Shelter paint = new Shelter("White Paint",5);
+        menu();
 
-        stockListObjects.add(pizza);
-        stockListObjects.add(paint);
-        stockListObjects.add(tire);
-        stockListObjects.add(cellphone);
-        stockListObjects.add(shirt);
-
-
-        System.out.println("WELCOME TO INVENTORY");
-        System.out.println("Please choose one of the following\n");
-
-        while (true) {
-            System.out.println("\n1|| Add new item to inventory\n");
-            System.out.println("2||Remove item from inventory\n");
-            System.out.println("3||Change the quantity of an item\n");
-            System.out.println("4||Print List");
-            String option = scanner.nextLine();
-
-            if (option.equals("1")) {
-                createItem();
-                listView();
-                System.out.println(stockListObjects.toString());
+        stockList.add(pizza);
+        stockList.add(paint);
+        stockList.add(tire);
+        stockList.add(cellphone);
+        stockList.add(shirt);
 
 
-            } else if (option.equals("2")) {
-
-                System.out.println("Enter the name of the item you want to remove from the inventory\n");
-                String option3 = scanner.nextLine();
-                System.out.println(option3 + " will be removed from the inventory");
-
-            } else if (option.equals("3")) {
-                System.out.println("Enter the name and the qty of the item that you want to update:\n");
-                String option4 = scanner.nextLine();
-                System.out.println(option4 + " will be changed");
-
-            } else if (option.equals("4")) {
-                System.out.println(stockList);
-
-
-            }
-        }
-    }
+}
 
     private static void listView() {
         String name = "User";
@@ -66,41 +37,65 @@ public class Main {
     public static NewItem createItem() throws Exception {
         System.out.println("What is the name of the item that you want to add to the inventory\n");
         String nameItem = scanner.nextLine();
-        stockList.add(nameItem);
 
         System.out.println("How many are adding?");
-        String itemAmount = scanner.nextLine();
-        stockList.add(itemAmount);
-
+        Integer itemAmount = Integer.valueOf(scanner.nextLine());
         System.out.println("Choose a category for your item :\n");
-        System.out.println("1)Automotive 2)Food 3)Electronics 4)Clothing");
+        System.out.println("1)Transportation 2)Food 3)Electronics 4)Clothing 5)Shelter");
         String itemCategory = scanner.nextLine();
-        String itemCategoryChoice;
-
-
 
         NewItem returnObject = new NewItem(nameItem,itemAmount,itemCategory);
 
         if (itemCategory.equalsIgnoreCase("1")) {
-        itemCategoryChoice ="Automotive";
-            stockList.add(itemCategoryChoice);
+            returnObject.setCategory("Transportation");
+
         } else if (itemCategory.equalsIgnoreCase("2")) {
-            itemCategoryChoice ="Food";
-            stockList.add(itemCategoryChoice);
+            returnObject.setCategory("Food");
 
         } else if (itemCategory.equalsIgnoreCase("3")) {
-            itemCategoryChoice ="Electronics";
-            stockList.add(itemCategoryChoice);
+            returnObject.setCategory("Electronics");
 
         } else if (itemCategory.equalsIgnoreCase("4")) {
-            itemCategoryChoice ="Clothing";
-            stockList.add(itemCategoryChoice);
+            returnObject.setCategory("Clothing");
+
+        } else if (itemCategory.equalsIgnoreCase("5")) {
+            returnObject.setCategory("Shelter");
 
         } else {
             throw new Exception("Invalid Option.");
 
-        }
-
-        return returnObject;
+        }stockList.add(returnObject);
+            return returnObject;
     }
-}
+
+
+    private static void menu() throws Exception {
+        System.out.println("WELCOME TO INVENTORY");
+        System.out.println("Please choose one of the following\n");
+
+        while (true) {
+            System.out.println("\n1|| Add new item to inventory\n");
+            System.out.println("2||Reset Inventory\n");
+            System.out.println("3||Print List");
+            String option = scanner.nextLine();
+
+            if (option.equals("1")) {
+                createItem();
+                listView();
+                System.out.println(stockList.toString());
+
+            } else if (option.equals("2")) {
+
+                System.out.println("Inventory has been cleared\n");
+                stockList.clear();
+
+            } else if (option.equals("3")) {
+                System.out.println(stockList);
+
+            }
+        }
+    }
+    }
+
+
+
